@@ -16,4 +16,6 @@ model Client {
   email      String
   password   String
   created_at DateTime
+
+  @@map("clients")
 }
