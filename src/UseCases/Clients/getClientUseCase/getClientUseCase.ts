@@ -1,5 +1,5 @@
-import { client as prismaClient } from "../../prisma/client";
-import AppError from "../../shared/AppError";
+import { client as prismaClient } from "../../../prisma/client";
+import AppError from "../../../shared/AppError";
 
 interface IClientRequest {
     id: string;

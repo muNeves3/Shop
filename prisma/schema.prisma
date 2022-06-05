@@ -19,3 +19,12 @@ model Client {
 
   @@map("clients")
 }
+
+model Item {
+  id          String  @id @default(uuid())
+  name        String
+  price       Decimal
+  description String
+
+  @@map("items")
+}

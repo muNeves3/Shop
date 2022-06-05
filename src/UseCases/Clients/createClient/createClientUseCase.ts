@@ -1,6 +1,6 @@
-import { client } from '../../prisma/client';
+import { client } from '../../../prisma/client';
 import { hash } from 'bcryptjs';
-import AppError from '../../shared/AppError';
+import AppError from '../../../shared/AppError';
 
 interface IClientRequest {
     name: string;
