@@ -18,8 +18,6 @@ class CreateClientController {
         } catch(error) {
             return response.json({'error': error})
         }
-        
-
     }
 }
 
