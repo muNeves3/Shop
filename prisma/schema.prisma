@@ -21,10 +21,24 @@ model Client {
 }
 
 model Item {
-  id          String  @id @default(uuid())
+  id          String   @id @default(uuid())
   name        String
   price       Decimal
   description String
+  created_at  DateTime
+  seller      Seller   @relation(fields: [sellerId], references: [id])
 
+  sellerId String
   @@map("items")
+}
+
+model Seller {
+  id         String   @id @default(uuid())
+  name       String
+  email      String
+  password   String
+  created_at DateTime
+
+  Item Item[]
+  @@map("seller")
 }

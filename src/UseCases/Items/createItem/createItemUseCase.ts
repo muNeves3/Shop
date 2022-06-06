@@ -5,29 +5,46 @@ interface IItemRequest {
     name: string;
     price: number;
     description: string;
+    sellerId: string;
 }
 
 class CreateItemUseCase {
-    async execute({ name, price, description }: IItemRequest) {
-        const itemAlreadyExists = await client.item.findFirst({
+    async execute({ name, price, description, sellerId }: IItemRequest) {
+        const sellerExists = await client.seller.findFirst({
             where: {
-                name
+                id: sellerId
             }
         });
 
-        if(itemAlreadyExists) {
-            throw new AppError("This item already exists");
+
+        if(!sellerExists) {
+            throw new AppError("This seller does not exists");
+        }
+
+        const itemAlreadyInSeller = await client.item.findFirst({
+            where: {
+                sellerId,
+                AND: {
+                    name
+                }
+            }
+        });
+
+        if(itemAlreadyInSeller) {
+            throw new AppError("This item is already selled by this seller");
         }
 
         const newItem = await client.item.create({
             data: {
                 name,
                 price,
-                description
+                description,
+                created_at: new Date(),
+                sellerId,
             }
         });
 
-        return newItem;
+        return {...newItem, sellerExists};
     }
 }
 
