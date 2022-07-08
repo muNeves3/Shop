@@ -17,6 +17,7 @@ model Client {
   password   String
   created_at DateTime
 
+  Shop Shop[]
   @@map("clients")
 }
 
@@ -28,7 +29,9 @@ model Item {
   created_at  DateTime
   seller      Seller   @relation(fields: [sellerId], references: [id])
 
-  sellerId String
+  sellerId   String
+  shopItemId String?
+  ShopItem   ShopItem[]
   @@map("items")
 }
 
@@ -41,4 +44,31 @@ model Seller {
 
   Item Item[]
   @@map("seller")
+}
+
+model Shop {
+  id         String   @id @default(uuid())
+  number     Int      @default(autoincrement())
+  created_at DateTime
+
+
+  Client   Client     @relation(fields: [clientId], references: [id])
+  ShopItem ShopItem[]
+
+  clientId String
+  @@map("shop")
+}
+
+model ShopItem {
+  id         String   @id @default(uuid())
+  number     Int      @default(autoincrement())
+  created_at DateTime
+  quantity   Int      @default(1)
+
+  Item   Item   @relation(fields: [itemId], references: [id])
+  itemId String
+
+  Shop   Shop   @relation(fields: [shopId], references: [id])
+  shopId String
+  @@map("shop_item")
 }
