@@ -25,8 +25,8 @@ class CreateShopItemUseCase {
                     shopId: item.shopId,
                     quantity: item.quantity <= 0 ? 1 : item.quantity,
                     created_at: new Date(),
-                })
-            })
+                });
+            });
            
             const createdItems = await client.shopItem.createMany({
                 data: shopItems
