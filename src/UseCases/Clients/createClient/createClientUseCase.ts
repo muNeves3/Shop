@@ -17,7 +17,7 @@ class CreateClientUseCase {
         });
 
         if(clientAlreadyExists) {
-            throw new AppError('Email already registered');
+            throw new AppError('Email already registered', 400);
         }
 
         const hashedPassword = await hash(password, 8);

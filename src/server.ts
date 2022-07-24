@@ -29,3 +29,5 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   });
 
 app.listen(3000, () => console.log('Server started on 3000'));
+
+export { app }
