@@ -41,5 +41,20 @@ describe('Testing the creation of a client', () => {
 
         
         await request(app).delete(`/clients/${createdClient.body.client.id}`);
-    })
+    });
+
+    it(`should be able get a client by the email`, async () => {
+        const createdClient = await request(app).post('/clients').send({
+            name: 'Cliente Teste 3',
+            email: 'clienteste3@email.com',
+            password: '123456'
+        });
+
+        const client = await request(app).get('/clients').query({ email: createdClient.body.client.email});
+
+        expect(client.body.client.name).toBe('Cliente Teste 3');
+        expect(client.body.client.email).toBe('clienteste3@email.com');
+        
+        await request(app).delete(`/clients/${createdClient.body.client.id}`);
+    });
 });
