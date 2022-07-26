@@ -57,4 +57,18 @@ describe('Testing the creation of a client', () => {
         
         await request(app).delete(`/clients/${createdClient.body.client.id}`);
     });
+
+    it(`should be able to delete a client`, async () => {
+        const createdClient = await request(app).post('/clients').send({
+            name: 'Cliente Teste 4',
+            email: 'clienteste4@email.com',
+            password: '123456'
+        });
+
+        await request(app).delete(`/clients/${createdClient.body.client.id}`);
+
+        const client = await request(app).get('/clients').query({ email: createdClient.body.client.email});
+
+        expect(client.text).toBe("{\"error\":{\"message\":\"This client does not exists\",\"statusCode\":400}}");
+    })
 });
