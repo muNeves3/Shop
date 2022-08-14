@@ -28,6 +28,26 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
     });
   });
 
-app.listen(3000, () => console.log('Server started on 3000'));
+  const isPortFree = (port: number) =>
+  new Promise(resolve => {
+    const server = require('http')
+      .createServer()
+      .listen(port, () => {
+        server.close()
+        resolve(true)
+      })
+      .on('error', () => {
+        resolve(false)
+      })
+  })
+
+  isPortFree(3000).then(isFree => {
+    if(isFree === true) {
+      app.listen(3000, () => console.log('Server started on 3000'));
+    } else {
+      const port =  Math.floor(1000 + Math.random() * 9000);
+      app.listen(port, () => console.log('Server started on ' + port));
+    }
+  })
 
 export { app }

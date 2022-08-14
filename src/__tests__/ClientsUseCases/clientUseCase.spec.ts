@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from "../../server"
 
-describe('Testing the creation of a client', () => {
+describe('Testing the CRUD of a client', () => {
     it('should be able to create a client', async () => { 
         const client = await request(app).post('/clients').send({
             name: 'Cliente Teste',
