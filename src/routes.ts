@@ -3,7 +3,7 @@ import { clientsRouter } from "./UseCases/Clients/clients.routes";
 import { itemsRouter } from "./UseCases/Items/items.routes";
 import { sellersRouter } from "./UseCases/Sellers/sellers.routes";
 import { shopRoutes } from './UseCases/Shop/shop.routes'; 
-//import { shopItemRoutes } from "./UseCases/ShopItem/shopItems.routes";
+import { shopItemRoutes } from "./UseCases/ShopItem/shopItems.routes";
 
 const router = Router();
 
@@ -11,6 +11,6 @@ router.use('/clients', clientsRouter);
 router.use('/items', itemsRouter);
 router.use('/sellers', sellersRouter);
 router.use('/shop', shopRoutes)
-//router.use('/shopItems', shopItemRoutes);
+router.use('/shopItems', shopItemRoutes);
 
 export { router }
