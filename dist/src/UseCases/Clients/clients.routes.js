@@ -1,0 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.clientsRouter = void 0;
+const createClientController_1 = require("./createClient/createClientController");
+const deleteClientController_1 = require("./deleteClient/deleteClientController");
+const getClientController_1 = require("./getClientUseCase/getClientController");
+const listClientController_1 = require("./listClientUseCase/listClientController");
+const getClientByEmailController_1 = require("./getClientByEmailUseCase/getClientByEmailController");
+const express_1 = require("express");
+const clientsRouter = (0, express_1.Router)();
+exports.clientsRouter = clientsRouter;
+const createClientController = new createClientController_1.CreateClientController();
+const deleteClientController = new deleteClientController_1.DeleteClientController();
+const listClientController = new listClientController_1.ListClientController();
+const getClientController = new getClientController_1.GetClientController();
+const getClientByEmailController = new getClientByEmailController_1.GetClientByEmailController();
+clientsRouter.post('/', createClientController.handle);
+clientsRouter.delete('/:id', deleteClientController.handle);
+clientsRouter.get('/', listClientController.handle);
+clientsRouter.get('/:id', getClientController.handle);
+//# sourceMappingURL=clients.routes.js.map

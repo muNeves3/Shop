@@ -1,12 +1,12 @@
-import Redis, { Redis as RedisClient } from 'ioredis';
-import cacheConfig from '../../../configs/cacheconfig';
-import ICacheProvider from './ICacheProvider';
+import Redis, { Redis as RedisClient } from "ioredis";
+import cacheConfig from "../../../configs/cacheconfig";
+import ICacheProvider from "./ICacheProvider";
 
-export default class RedisCachProvider implements ICacheProvider{
+export default class RedisCachProvider implements ICacheProvider {
   private client: RedisClient;
 
   constructor() {
-    this.client = new Redis(cacheConfig.config.redis);
+    this.client = new Redis();
   }
 
   public async save(key: string, value: any): Promise<void> {
@@ -33,7 +33,7 @@ export default class RedisCachProvider implements ICacheProvider{
 
     const pipeline = await this.client.pipeline();
 
-    keys.forEach(key => {
+    keys.forEach((key) => {
       pipeline.del(key);
     });
 

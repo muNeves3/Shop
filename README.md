@@ -8,3 +8,7 @@
     - Prisma
     - Redis
     - Jest
+    - Docker
+    - Docker-compose
+
+## Project Routes

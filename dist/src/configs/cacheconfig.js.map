@@ -1,0 +1,1 @@
+{"version":3,"file":"cacheconfig.js","sourceRoot":"","sources":["../../../src/configs/cacheconfig.ts"],"names":[],"mappings":";;AAUA,kBAAe;IACb,MAAM,EAAE,OAAO;IAEf,MAAM,EAAE;QACN,KAAK,EAAE;YACL,IAAI,EAAE,OAAO,CAAC,GAAG,CAAC,UAAU;YAC5B,IAAI,EAAE,OAAO,CAAC,GAAG,CAAC,UAAU;YAC5B,QAAQ,EAAE,OAAO,CAAC,GAAG,CAAC,UAAU,IAAI,SAAS;SAC9C;KACF;CACyB,CAAC"}
